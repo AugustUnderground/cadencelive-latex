@@ -1,0 +1,114 @@
+\usepackage[left=25mm,right=25mm,top=20mm,bottom=20mm]{geometry}
+\usepackage{authblk}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage{graphicx}
+\usepackage{nopageno}
+\usepackage{parskip}
+\usepackage{titlesec}
+\usepackage{etoolbox}
+\usepackage{soul}
+
+%%
+%% Arial Font config
+\renewcommand{\sfdefault}{phv}
+\renewcommand{\familydefault}{\sfdefault}
+
+%%
+%% Author Block
+\renewcommand*{\Authsep}{, }
+\renewcommand*{\Authand}{, }
+\renewcommand*{\Authands}{, }
+\renewcommand*{\Authfont}{}
+\renewcommand*{\Affilfont}{}
+\setlength{\affilsep}{6pt}
+
+%%
+%% Title Block
+\newcommand{\logo}{./fig/cadencelive-2022.pdf}
+
+\makeatletter
+\renewcommand{\maketitle}{%
+\vspace*{-0.5cm}
+\includegraphics[width=0.32\textwidth]{\logo}
+\vspace{35pt}
+\begin{center}
+    {\LARGE\noindent\ignorespaces\bfseries\@title\par}
+    \linespread{1.5}
+    \vspace{10pt}
+    {\large\noindent\ignorespaces\@author\par}
+    %{\normalsize\noindent\ignorespaces\@affil\par}
+	{\large\noindent\ignorespaces\email\par}
+    \linespread{1.0}
+\end{center}}
+\makeatother
+
+%%
+%% Abstract
+\makeatletter
+\renewenvironment{abstract}{%
+    \vspace*{5mm}
+    \noindent\begin{minipage}{1\textwidth}
+    \begin{center}
+    \textbf{\fontsize{14}{3}\selectfont Abstract}
+    \bigskip
+    \end{center}
+    \fontsize{12}{3}\selectfont
+    \medskip
+
+}{\end{minipage}}
+\makeatother
+
+%%
+%% Keywords
+\makeatletter
+\newenvironment{keywords}{%
+    \vspace{.5em}
+    \noindent\begin{minipage}{1\textwidth}
+        \textbf{\fontsize{12}{3}\selectfont Keywords:}\fontsize{10}{3}\selectfont
+}{\end{minipage}}
+\makeatother
+
+%%
+%% Keywords
+\makeatletter
+\newenvironment{acknowledgment}{%
+    \noindent\begin{minipage}{1\textwidth}
+    \bigskip
+    \section*{Acknowledgments}
+}{\end{minipage}}
+\makeatother
+
+%%
+%% Reformatting Table and Figure lables
+\renewcommand{\tablename}{\fontsize{8}{3}\selectfont Tab.}
+\renewcommand{\figurename}{\fontsize{8}{3}\selectfont Fig.}
+\setlength\abovecaptionskip{2pt}
+\setlength\belowcaptionskip{5pt}
+
+%%
+%% Section formatting
+\titleformat{\section}{\fontsize{12}{6}\selectfont}{\textbf{\thesection .}}{0.5em}{\textbf}
+\titlespacing{\section}{0pt}{10pt}{6pt}
+
+%%
+%% No paragraph indentation
+\setlength{\parindent}{0pt}
+
+%%
+%% Bibliography
+\makeatletter
+\renewenvironment{thebibliography}[1]{%
+    \section*{\fontsize{12}{14}\selectfont\refname}%
+    \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+    \list{\@biblabel{\@arabic\c@enumiv}}{%
+        \settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth\advance\leftmargin\labelsep
+        \@openbib@code\usecounter{enumiv}\let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}}\sloppy
+        \clubpenalty4000
+        \@clubpenalty \clubpenalty
+        \widowpenalty4000\sfcode`\.\@m}
+        {\def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}%
+        }\endlist}
+\makeatother
